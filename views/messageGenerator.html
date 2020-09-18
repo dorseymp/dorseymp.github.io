@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/style.css">
+
+    <title>Pretty Bad Greeting Cards</title>
+
+  </head>
+
+  <body>
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="../index.html"
+          >Pretty Bad Greeting Cards</a
+        >
+      </div>
+    </nav>
+    <br />
+    
+    <section>
+      <div id="selectOccassion" class="container">
+        <div class="form-group text-center">
+            <div class="occassionSelect">
+              <h1>Create a Message</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Output birthday message selection -->
+    <div class="container text-center">
+      <label id="label">Birthday message suggestion:</label><br />
+      <h2 id="output" class="text-center"></h2>
+    </div>
+    <!-- User inputs -->
+    <div
+      id="style"
+      class="container"
+      style="width: 300px;"
+    >
+      <div class="form-group">
+        <label>Enter birthday coworker's name</label>
+        <input
+          type="name"
+          class="form-control"
+          id="name"
+          placeholder="Enter name" required
+        />
+      </div>
+      <div class="form-group">
+        <label>How long have you known this coworker?</label>
+        <select id="time" class="form-control">
+          <option></option>
+          <option>0-1 month</option>
+          <option>1-3 months</option>
+          <option>3-6 months</option>
+          <option>6 months-10 months</option>
+          <option>10 months-12 months</option>
+          <option>Over 1 year</option>
+        </select>
+      </div>
+      <br />
+
+      <form onsubmit="renderOutput()">
+        <input
+          onsubmit="messageOut"
+          id="submit"
+          type="submit"
+          class="btn btn-block"
+        />
+      </form>
+    </div>
+
+
+
+
+    <script>
+      // Hide output until function is activated
+      document.getElementById("output").style.display = "none";
+      document.getElementById("label").style.display = "none";
+
+      function renderOutput() {
+        event.preventDefault();
+        document.getElementById("output").style.display = "";
+        document.getElementById("label").style.display = "";
+
+        let bdayName = document.getElementById("name").value;
+        let x = document.getElementById("time").selectedIndex;
+        // If the birthday person's name or time known is not input, tell the user
+        if (bdayName === "") {
+          document.getElementById("output").innerHTML =
+            "You forgot to enter the name...";
+        }
+        // using switch to select correct text
+        switch (x) {
+          case 0:
+            document.getElementById("output").innerHTML = "You forgot to make a selection...";
+            break;
+          case 1:
+            document.getElementById("output").innerHTML = "Happy Birthday!";
+            break;
+          case 2:
+            document.getElementById("output").innerHTML =  `Happy Birthday, ${bdayName}`
+            break;
+          case 3:
+            document.getElementById("output").innerHTML =  `Happy Birthday, ${bdayName}! You're the man!`;
+            break;
+          case 4:
+            document.getElementById("output").innerHTML = `${bdayName}, Happy birthday!`;
+            break;
+          case 5:
+            document.getElementById("output").innerHTML = `Dear ${bdayName}, how about you buy me some lunch? Happy birthday!`;
+            break;
+          case 6:
+            document.getElementById("output").innerHTML = `${bdayName}, you don't look a day over 100!`;
+
+        } 
+      }
+    </script>
+  </body>
+</html>

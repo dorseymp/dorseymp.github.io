@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/style.css">
+
+<style>
+  .container {
+  justify-content: space-between;
+  margin-top: -50px;
+}
+
+.createCard {
+  margin-top: 50px;
+}
+
+#birthday, #anniversary, #wedding {
+  margin-top: 50px;
+}
+
+#annivCard {
+    /* flex-basis: 300px; */
+  text-align: center;
+}
+  
+#weddingCard {
+    /* flex-basis: 300px; */
+  text-align: center;
+}
+  
+.bdayCard {
+  position: relative;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.bdayCard img {
+  -webkit-box-shadow: 0px 5px 10px rgb(49, 49, 49);
+  -moz-box-shadow: 0px 5px 10px rgb(49, 49, 49);
+  box-shadow: 0px 5px 10px rgb(49, 49, 49);
+}
+  
+.annivCard {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: 50px;
+}
+
+.annivCard img {
+  -webkit-box-shadow: 0px 5px 10px rgb(49, 49, 49);
+  -moz-box-shadow: 0px 5px 10px rgb(49, 49, 49);
+  box-shadow: 0px 5px 10px rgb(49, 49, 49);
+}
+  
+.weddingCard {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-top: 50px;
+}
+
+.weddingCard img {
+  -webkit-box-shadow: 0px 5px 10px rgb(49, 49, 49);
+  -moz-box-shadow: 0px 5px 10px rgb(49, 49, 49);
+  box-shadow: 0px 5px 10px rgb(49, 49, 49);
+}
+  
+.centered {
+  position: absolute;
+   top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
+
+    <title>Pretty Bad Greeting Cards</title>
+  </head>
+
+<body>
+    
+<!-- Nav -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+  <div class="mx-auto order-0">
+      <a class="navbar-brand mx-auto" href="../index.html">Pretty Bad Greeting Cards</a>
+  </div>
+</nav>
+<br />
+    
+<!-- User selection for the occassion (birthday, anniversary, or wedding) -->
+  <section>
+    <div class="container" style="width:300px;">
+      <div class="createCard">
+        <div class="form-group text-center">
+          <h1>Create a Card</h1>
+          <div id="selectOccassion" > 
+            <div class="selectOccassion">
+              <div class="form-group text-center">
+                <div class="occassionSelect">
+                  <label>Select an occassion</label>
+                  <select   id="occassion" class="form-control"  onchange="selectOccassion()">
+                    <option></option>
+                    <option>Birthday</option>
+                    <option>Anniversary</option>
+                    <option>Wedding</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+<!-- Birthday inputs and selections -->
+<div class="container h-100">
+  <div class="row d-flex flex-wrap-reverse justify-content-center align-items-center">
+    <div id="birthday">
+      <div class="mx-5">
+        <div style="width: 300px;">
+          <div class="form-group" >
+            <label>Enter birthday person's name</label>
+            <input
+              type="name"
+              class="form-control"
+              id="name"
+              placeholder="Enter name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Select birthday person's new age</label>
+            <select id="age" class="form-control"> </select>
+          </div>
+      
+          <div class="form-group">
+            <label>Select relation</label>
+            <select id="relation" class="form-control">
+              <option value=""></option>
+              <option>Mom</option>
+              <option>Dad</option>
+              <option>Brother</option>
+              <option>Sister</option>
+              <option>Good friend</option>
+              <option>Decent friend</option>
+              <option>Bad friend</option>
+              <option>Coworker</option>
+            </select>
+          </div>
+ 
+          <form onsubmit="runBday()">
+            <input
+              onsubmit="messageOut"
+              id="submitBday"
+              type="submit"
+              class="btn btn-block"
+            />
+          </form>
+          <br>
+        </div>
+      </div>
+    </div>
+
+    <!-- Birthday card image -->
+    <div class="bdayCard" id="bdayCard">
+      <div class="mx-5">
+        <!-- Text output -->
+        <img src="../img/badBdayCard.png"  id="badBdayCard" width="400px">
+        <div class="centered" id="happyBday"></div> 
+      </div>
+    </div>
+  </div>
+
+  <!-- Anniversary inputs and selections -->
+  <div class="row d-flex flex-wrap-reverse justify-content-center align-items-center">
+    <div id="anniversary">
+      <div class="mx-5">
+        <div style="width: 300px;">
+          <div class="form-group" >
+            <label>Enter names of the anniversary couple</label>
+            <input
+              type="name"
+              class="form-control"
+              id="annivName1"
+              placeholder="Enter name 1"
+            /> 
+          </div>
+          <div class="form-group">
+            <input
+              type="name"
+              class="form-control"
+              id="annivName2"
+              placeholder="Enter name 2"
+            />
+          </div>
+      
+          <div class="form-group" >
+            <label>How many years has the couple been together?</label>
+            <small class="form-text text-muted">Guess if you have to</small>
+            <select id="yearsTogether" class="form-control"> </select>
+          </div>
+      
+          <form onsubmit="runAnniversary()">
+            <input
+              onsubmit="messageOut"
+              id="submitAnniversary"
+              type="submit"
+              class="btn btn-block"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anniversary card image -->
+    <div class="annivCard" id="annivCard">
+      <div class="mx-5">
+        <!-- Text output -->
+        <img src="../img/annivCard.png"  id="badAnnivCard" width="400px"></img>
+        <div class="centered" id="happyAnniv"></div> 
+      </div>
+    </div>
+  </div>
+
+  <!-- Wedding inputs and selections -->
+  <div class="row d-flex flex-wrap-reverse justify-content-center align-items-center">
+    <div id="wedding">
+      <div class="mx-5">
+        <div style="width: 300px;">
+          <div class="form-group">
+            <label>Enter the names of the wedding couple</label>
+            <input
+              type="name"
+              class="form-control"
+              id="wedName1"
+              placeholder="Your friend's name"
+            /> 
+            <br>
+            <input
+              type="name"
+              class="form-control"
+              id="wedName2"
+              placeholder="Their partner's name"
+            />
+          </div>
+      
+          <div class="form-group">
+            <label>How much do you like the person your friend is marrying?</label>
+            <select id="opinion" class="form-control">
+              <option></option>
+              <option>A ton, they are also my best friend</option>
+              <option>A lot, they are also my friend</option>
+              <option>They are good enough</option>
+              <option>They are just okay and I tolerate them</option>
+              <option>I do not like them</option>
+              <option>I wish this wedding wasn't happening</option>
+            </select>
+          </div>
+      
+          <form onsubmit="runWedding()">
+            <input
+              onsubmit="messageOut"
+              id="submitWedding"
+              type="submit"
+              class="btn btn-block"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wedding card image -->
+    <div class="weddingCard" id="weddingCard">
+      <div class="mx-5">
+        <img src="../img/weddingCard.png" width="400px">
+          <div class="centered" id="happyWedding"></div>
+          <br>
+          <div class="centered" id="partnerOpinion"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+   
+// Hide birthday, anniversary, and wedding until selected in the dropdown 
+document.getElementById("birthday").style.display = "none";
+document.getElementById("anniversary").style.display = "none";
+document.getElementById("wedding").style.display = "none";
+
+  function selectOccassion() {
+    let selectedOccassion = document.getElementById("occassion").selectedIndex;
+    switch (selectedOccassion) {
+      case 0:
+        break;
+      case 1:
+        document.getElementById("birthday").style.display = "";
+        document.getElementById("anniversary").style.display = "none";
+        document.getElementById("wedding").style.display = "none";
+        document.getElementById("annivCard").style.display = "none";
+        document.getElementById("weddingCard").style.display = "none";
+        break;
+      case 2:
+        document.getElementById("anniversary").style.display = "";
+        document.getElementById("wedding").style.display = "none";
+        document.getElementById("birthday").style.display = "none";
+        document.getElementById("bdayCard").style.display = "none";
+        document.getElementById("weddingCard").style.display = "none";
+        break;
+      case 3: 
+        document.getElementById("wedding").style.display = "";
+        document.getElementById("birthday").style.display = "none";
+        document.getElementById("anniversary").style.display = "none";
+        document.getElementById("bdayCard").style.display = "none";
+        document.getElementById("anniversary").style.display = "none";
+    }
+  }
+
+// Birthday selection
+// Hide bday card until submit
+document.getElementById("bdayCard").style.display = "none";
+
+  function runBday() {
+    event.preventDefault();
+
+    // Retrieve inputs
+    let bdayName = document.getElementById("name").value;
+    let bdayAge = document.getElementById("age").selectedIndex;
+    let relation = document.getElementById("relation").selectedIndex;
+
+    // Input form remains if the relation is not selected or name is not entered
+    if (bdayName == "") {
+      document.getElementById("birthday").style.display = "";
+      document.getElementById("selectOccassion").style.display = "";
+      alert("Please enter a name.");
+      return false;
+    } 
+    switch (relation) {
+      case 0:
+        document.getElementById("birthday").style.display = "";
+        document.getElementById("selectOccassion").style.display = "";
+        alert("Please select a relation.");
+        return false;
+    }
+    switch (relation) {
+      case 1: 
+        relationType = "mom";
+        break;
+      case 2: 
+        relationType = "dad";
+        break;
+      case 3: 
+        relationType = "brother";
+        break;
+      case 4: 
+        relationType = "sister";
+        break;
+      case 5: 
+        relationType = "good friend";
+        break;
+      case 6: 
+        relationType = "decent friend";
+        break;
+      case 7: 
+        relationType = "bad friend";
+        break;
+      case 8: 
+        relationType = "coworker";
+        break;
+    }
+    
+    // Determines whether "year(s)" is singular or plural in the bday card output
+    if (bdayAge === 1) {
+      var singPlurAge = " year old. "
+    } else {
+      var singPlurAge = " years old. "
+    }
+    
+    // Output bday card
+    document.getElementById("happyBday").innerHTML =
+      "Happy Birthday, " + bdayName + ". You are now approximately " + bdayAge + singPlurAge +
+      "You are my " + relationType + ".";
+    document.getElementById("bdayCard").style.display = "";
+    document.getElementById("selectOccassion").style.display = "none";
+  }
+
+
+// Anniversary selection
+// Hide anniversary card until submit
+document.getElementById("annivCard").style.display = "none";
+
+  function runAnniversary() {
+    event.preventDefault();
+
+    // Retrieve inputs
+    var name1 = document.getElementById("annivName1").value;
+    var name2 = document.getElementById("annivName2").value;
+    var yrsTogether = document.getElementById("yearsTogether").selectedIndex;
+
+    // Input form remains if the relation is not selected or name is not entered
+    if (name1 === "" || name2 === "") {
+      document.getElementById("anniversary").style.display = "";
+      document.getElementById("selectOccassion").style.display = "";
+      alert("Please enter the names of the couple.")
+    } else {
+      // Determines whether "year(s)" is singular or plural in the bday card output
+      if (yrsTogether === 1) {
+        var singPlurYears = "year";
+      } else {
+        var singPlurYears = "years";
+      }
+      // Output anniversary card
+      document.getElementById("happyAnniv").innerHTML = "Congratulations for being together approximately " + yrsTogether + " " + singPlurYears + " " + name1 + " and " + name2 + ".";
+      document.getElementById("annivCard").style.display = "";
+      document.getElementById("selectOccassion").style.display = "none";
+      }        
+  }
+
+// Wedding selection
+// Hide wedding card until submit
+document.getElementById("weddingCard").style.display = "none";
+      
+    function runWedding() {
+      event.preventDefault();
+      document.getElementById("happyAnniv").style.display = "none";
+      
+
+      let name1 = document.getElementById("wedName1").value;
+      let name2 = document.getElementById("wedName2").value;
+      let opinionIndex = document.getElementById("opinion").selectedIndex;
+
+      // Inputs remain if the relation is not selected or name is not entered
+      if (name1 === "" || name2 === "") {
+        document.getElementById("wedding").style.display = "";
+        document.getElementById("selectOccassion").style.display = "";
+        alert("Please enter the names of the couple.")
+        return false;
+      } 
+      switch (opinionIndex) {
+        case 0:
+          document.getElementById("wedding").style.display = "";
+          document.getElementById("selectOccassion").style.display = "";
+          alert("Please make a selection for how much you like the person your friend is marrying.")
+          return false;
+          break;
+      }
+      switch (opinionIndex) {
+        case 1:  
+          var statement = "You are also my best friend. Congratulations to you also."
+          var friendStatement = "Congratulations! I'm very happy for you!"
+          break;
+        case 2:
+          var statement = "You are also my friend. Congratulations to you also."
+          var friendStatement = "Congratulations! I'm happy for you."
+          break;
+        case 3:
+          var statement = "You are good enough. Congratulations to you also."
+          var friendStatement = "Congratulations. I'm happy for you."
+          break;
+        case 4:
+          var statement = "You are just okay and I tolerate you."
+          var friendStatement = "As long as you're happy, I suppose this is okay."
+          break;
+        case 5:
+          var statement = "I do not like you."
+          var friendStatement = "Well, you got married."
+          break;
+        case 6:
+          var statement = "I bet it's over in less than a year."
+          var friendStatement = "Huge mistake."
+        }
+        // Output wedding card
+        document.getElementById("happyWedding").innerHTML = name1 + ": " + friendStatement + " " + name2 + ": " + statement;
+        document.getElementById("weddingCard").style.display = "";
+        document.getElementById("selectOccassion").style.display = "none";
+      }        
+      
+
+
+
+// Set birthday age range for selection between 1 and 129
+window.addEventListener("DOMContentLoaded", function () {
+let ages = document.getElementById("age");
+
+for (var i = 1; i < 130; i++) {
+  let theSelection = document.createElement("option");
+  // Assign selected value as the selectedIndex
+  theSelection.text = i;
+  theSelection.value = i;
+  i === 1 ? (theSelection.selected = "selected") : "";
+  ages.options[i] = theSelection;
+}
+});
+
+// Set anniversary years together for selection between 1 and 100
+window.addEventListener("DOMContentLoaded", function () {
+var yearNum = document.getElementById("yearsTogether");
+
+for (var i = 1; i < 101; i++) {
+  var theSelection = document.createElement("option");
+  theSelection.text = i;
+  theSelection.value = i;
+  i === 1 ? (theSelection.selected = "selected") : "";
+  yearNum.options[i] = theSelection;
+}
+})
+
+    </script>
+  </body>
+</html>
